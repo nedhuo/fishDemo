@@ -16,7 +16,7 @@ import androidx.appcompat.widget.AppCompatTextView;
  */
 public class SimpleViewPage extends AppCompatTextView {
     private float mPercent = 0.0f; //设置一个百分比用来表示渐变
-    private String mText = "垂直水平居中";
+    private final String mText = "垂直水平居中";
 
     public float getPercent() {
         return mPercent;

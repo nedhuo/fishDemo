@@ -23,33 +23,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mView = findViewById(R.id.simpleViewPage);
+        findViewById(R.id.tv_fish).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, FishActivity.class);
+            startActivity(intent);
+        });
 
-        //使用属性动画的方式实现渐变
-        Timer timer = new Timer();
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        change();
-                    }
-                });
-            }
-        };
-        timer.schedule(timerTask, 2000);
 
-        mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, FishActivity.class);
-                startActivity(intent);
-            }
+        findViewById(R.id.tv_font).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, FontEffectActivity.class);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.tv_circle).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, FontEffectActivity.class);
+            startActivity(intent);
         });
     }
 
-    private void change() {
-        ObjectAnimator.ofFloat(mView, "percent", 0, 1).setDuration(2000).start();
-    }
+
 }
