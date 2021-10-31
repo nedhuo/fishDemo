@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.nedhuo.custom.R;
+import com.nedhuo.custom.circle.RoundCircleActivity;
 import com.nedhuo.custom.fish.FishActivity;
 import com.nedhuo.custom.viewpage.SimpleViewPage;
 
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.tv_circle).setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, FontEffectActivity.class);
+            Intent intent = new Intent(MainActivity.this, RoundCircleActivity.class);
             startActivity(intent);
         });
     }

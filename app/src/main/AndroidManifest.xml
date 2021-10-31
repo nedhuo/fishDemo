@@ -23,6 +23,7 @@
             android:name=".FontEffectActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
+        <activity android:name=".circle.RoundCircleActivity" />
     </application>
 
 </manifest>
