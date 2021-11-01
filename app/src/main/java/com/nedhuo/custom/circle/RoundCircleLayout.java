@@ -1,6 +1,7 @@
 package com.nedhuo.custom.circle;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.PointF;
 import android.os.Build;
 import android.util.AttributeSet;
@@ -26,6 +27,8 @@ public class RoundCircleLayout extends FrameLayout {
 
     private List<ImageView> mPendingImageList;
     private PointF mCenterPointF;
+    private int mHeight;
+    private int mWidth;
 
     public RoundCircleLayout(Context context) {
         super(context);
@@ -55,13 +58,19 @@ public class RoundCircleLayout extends FrameLayout {
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        super.onLayout(changed, left, top, right, right);
+
         Log.i(TAG, "left=" + left + ";"
                 + "top=" + top + ";"
                 + "right=" + right + ";"
                 + "bottom=" + bottom);
+
+        mHeight = bottom - top;
+        mWidth = right - left;
+
         mCenterPointF.y = (bottom - top) / 2;
         mCenterPointF.x = (right - left) / 2;
+
+        super.onLayout(changed, left, top, right, right);
         //父容器的宽、高
 //        int centerX = getWidth() / 2;
 //        int centerY = getHeight() / 2;
@@ -75,6 +84,13 @@ public class RoundCircleLayout extends FrameLayout {
 //        }
     }
 
+    @Override
+    protected void onDraw(Canvas canvas) {
+        mWidth = getWidth();
+        mHeight = getHeight();
+
+        super.onDraw(canvas);
+    }
 
     private void init() {
         mCenterPointF = new PointF();
@@ -83,13 +99,26 @@ public class RoundCircleLayout extends FrameLayout {
         }
     }
 
-//    public void addView(ImageView view) {
-//       // mPendingImageList.add(view);
-//
-//        addView(view);
-//
-//
-//    }
+    public void addView(ImageView view) {
+        // mPendingImageList.add(view);
+//        requestLayout();
+//        invalidate();
+
+
+        super.addView(view);
+
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        layoutParams.width = 50;
+        layoutParams.height = 50;
+        view.setLayoutParams(layoutParams);
+
+        int i = layoutParams.height / 2;
+        PointF pointF = calculatePoint(mCenterPointF, 200 + i);
+        view.setY(pointF.y);
+        view.setX(pointF.x);
+
+
+    }
 
     /**
      * 计算相对于圆心的起始位置
@@ -107,8 +136,8 @@ public class RoundCircleLayout extends FrameLayout {
     }
 
     private double calculateStartAngle() {
-        Random random = new Random(360);
-        return random.nextDouble();
+        Random random = new Random();
+        return (double) random.nextInt(360);
     }
 
 }
