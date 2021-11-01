@@ -63,19 +63,13 @@ public class RoundCircleView extends View {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
 
-        if (mPendingImageList != null & mPendingImageList.size() > 0) {
-            for (ImageView imageView : mPendingImageList) {
-                PointF pointF = calculatePoint(new PointF(getWidth() / 2, getHeight() / 2), 300);
 
-            }
-        }
 
         super.onLayout(changed, left, top, right, bottom);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-
 
         //中心点 取布局中心点
         mPointF.x = getWidth() / 2;
@@ -86,7 +80,6 @@ public class RoundCircleView extends View {
         drawBackground(canvas);
 
         //绘制中心image
-
 
         super.onDraw(canvas);
     }
