@@ -1,5 +1,10 @@
 package com.nedhuo.custom.circle;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.PointF;
@@ -8,6 +13,9 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,6 +37,7 @@ public class RoundCircleLayout extends FrameLayout {
     private PointF mCenterPointF;
     private int mHeight;
     private int mWidth;
+    private Random mRandom;
 
     public RoundCircleLayout(Context context) {
         super(context);
@@ -93,6 +102,7 @@ public class RoundCircleLayout extends FrameLayout {
     }
 
     private void init() {
+        mRandom = new Random();
         mCenterPointF = new PointF();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             setBackground(new RoundCircleDrawable(mContext));
@@ -100,22 +110,56 @@ public class RoundCircleLayout extends FrameLayout {
     }
 
     public void addView(ImageView view) {
-        // mPendingImageList.add(view);
-//        requestLayout();
-//        invalidate();
-
-
         super.addView(view);
 
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-        layoutParams.width = 50;
-        layoutParams.height = 50;
-        view.setLayoutParams(layoutParams);
 
-        int i = layoutParams.height / 2;
-        PointF pointF = calculatePoint(mCenterPointF, 200 + i);
-        view.setY(pointF.y);
-        view.setX(pointF.x);
+        //随机宽高
+
+
+        layoutParams.width = 20;
+        layoutParams.height = 20;
+        view.setLayoutParams(layoutParams);
+        int i = layoutParams.height / 2;//宽高的一半 需要拿计算出的位置 与 该值 计算出最终位置
+
+        //控制随机线
+        int radius = (mRandom.nextInt(3) + 2) * 100;//200->400
+        PointF pointF = calculatePoint(mCenterPointF, radius);
+
+        //设置位置
+        float mOffsetY = mCenterPointF.y - pointF.y + i;
+        float mOffsetX = mCenterPointF.x - pointF.x + i;
+        view.setY(pointF.y - i);
+        view.setX(pointF.x - i);
+
+
+        int line = (mRandom.nextInt(6) + 3) * 10;//30->80
+        float percent = line / 20f;
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(view, "scaleX", percent);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(view, "scaleY", percent);
+        AnimatorSet animSet = new AnimatorSet();
+        animSet.play(scaleX).with(scaleY);
+        animSet.setDuration(1000);
+        animSet.start();
+
+        Log.i(TAG, "mOffsetY=" + mOffsetY + "mOffsetX=" + mOffsetX);
+        Log.i(TAG, "setX=" + (pointF.x - i) + "setY=" + (pointF.x - i));
+        Log.i(TAG, "position=" + radius + "size=" + line);
+
+        animSet.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                RotateAnimation rotation = new RotateAnimation(0f, 359f, Animation.RELATIVE_TO_PARENT, 0.5f, Animation.RELATIVE_TO_PARENT, 0.5f);
+
+//                view.setPivotX(0.5f);//是指以view为坐标系（mOffsetX,mOffsetY）位置
+//                view.setPivotY(0.5f);
+                rotation.setRepeatCount(ValueAnimator.INFINITE);
+                rotation.setInterpolator(new LinearInterpolator());
+                rotation.setDuration(3000);
+                view.setAnimation(rotation);
+                //rotation.start();
+            }
+        });
 
 
     }
@@ -136,8 +180,7 @@ public class RoundCircleLayout extends FrameLayout {
     }
 
     private double calculateStartAngle() {
-        Random random = new Random();
-        return (double) random.nextInt(360);
+        return mRandom.nextInt(360);
     }
 
 }
