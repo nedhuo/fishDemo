@@ -1,19 +1,13 @@
 package com.nedhuo.custom;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
-import com.nedhuo.custom.R;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.nedhuo.custom.circle.RoundCircleActivity;
 import com.nedhuo.custom.fish.FishActivity;
 import com.nedhuo.custom.viewpage.SimpleViewPage;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.tv_circle).setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, RoundCircleActivity.class);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.tv_simpleDanma).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SimpleDanmaActivity.class);
             startActivity(intent);
         });
     }
