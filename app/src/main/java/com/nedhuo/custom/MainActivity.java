@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.nedhuo.custom.circle.RoundCircleActivity;
 import com.nedhuo.custom.fish.FishActivity;
+import com.nedhuo.custom.headeranim.AiChatHeaderLayout;
+import com.nedhuo.custom.headeranim.AiChatHeaderLayoutActivity;
 import com.nedhuo.custom.viewpage.SimpleViewPage;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.tv_simpleDanma).setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SimpleDanmaActivity.class);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.tv_header).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, AiChatHeaderLayoutActivity.class);
             startActivity(intent);
         });
     }

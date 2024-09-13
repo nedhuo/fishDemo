@@ -27,6 +27,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".circle.RoundCircleActivity" />
         <activity android:name=".SimpleDanmaActivity" />
+        <activity android:name=".headeranim.AiChatHeaderLayoutActivity" />
     </application>
 
 </manifest>
