@@ -6,9 +6,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.nedhuo.custom.circle.RoundCircleActivity;
-import com.nedhuo.custom.fish.FishActivity;
-import com.nedhuo.custom.headeranim.AiChatHeaderLayout;
-import com.nedhuo.custom.headeranim.AiChatHeaderLayoutActivity;
+import com.nedhuo.custom.anim.headeranim.FishActivity;
+import com.nedhuo.custom.anim.headeranim.AiChatHeaderLayoutActivity;
 import com.nedhuo.custom.viewpage.SimpleViewPage;
 
 public class MainActivity extends AppCompatActivity {

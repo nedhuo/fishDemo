@@ -1,16 +1,14 @@
-package com.nedhuo.custom.headeranim
+package com.nedhuo.custom.anim.headeranim
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
-import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
-import androidx.core.animation.addListener
 import com.nedhuo.custom.databinding.AiChatLayoutHeaderBinding
 import com.nedhuo.custom.ext.dp
 
@@ -83,9 +81,6 @@ class AiChatHeaderLayout @JvmOverloads constructor(context: Context, attrs: Attr
         val animatorSet = AnimatorSet()
         animatorSet.setDuration(animDuration)
         animatorSet.playTogether(headerAnim, rootAnim, waveAnim)
-        animatorSet.addListener(onEnd = {
-
-        })
         animatorSet.start()
     }
 

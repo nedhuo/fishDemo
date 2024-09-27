@@ -1,4 +1,4 @@
-package com.nedhuo.custom.fish;
+package com.nedhuo.custom.anim.fish;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

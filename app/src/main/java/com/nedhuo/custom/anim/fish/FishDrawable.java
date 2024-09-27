@@ -1,4 +1,4 @@
-package com.nedhuo.custom.fish;
+package com.nedhuo.custom.anim.fish;
 
 import android.animation.ValueAnimator;
 import android.graphics.Canvas;

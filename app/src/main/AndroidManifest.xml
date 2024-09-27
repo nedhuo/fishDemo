@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".fish.FishActivity" />
+        <activity android:name=".anim.headeranim.FishActivity" />
         <activity android:name=".threadhandler.ThreadHandlerActivity" />
         <activity
             android:name=".FontEffectActivity"
@@ -27,7 +27,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".circle.RoundCircleActivity" />
         <activity android:name=".SimpleDanmaActivity" />
-        <activity android:name=".headeranim.AiChatHeaderLayoutActivity" />
+        <activity android:name=".anim.headeranim.AiChatHeaderLayoutActivity" />
     </application>
 
 </manifest>

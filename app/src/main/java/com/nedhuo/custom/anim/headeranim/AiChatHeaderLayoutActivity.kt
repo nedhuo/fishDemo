@@ -1,4 +1,4 @@
-package com.nedhuo.custom.headeranim
+package com.nedhuo.custom.anim.headeranim
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
